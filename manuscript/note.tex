@@ -1,0 +1,262 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks,breaklinks]{hyperref}
+\usepackage{enumitem}
+\theoremstyle{plain}\newtheorem{theorem}{Theorem}\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\N}{\mathbb{N}}\newcommand{\Z}{\mathbb{Z}}
+\title{Realizer Bounds and Repetition Constraints\\ at the First Coefficient Crossing in the $3x+1$ Problem}
+\author{Elias De Jes\'us\\ \textit{Independent Researcher}\\
+ORCID \href{https://orcid.org/0009-0007-0190-9143}{0009-0007-0190-9143}}
+\date{14 November 2026 \\[2pt] \textnormal{\small Ready for author review. Not refereed, not deposited, no DOI.}}
+\begin{document}\maketitle
+
+\begin{abstract}
+Terras's coefficient stopping time conjecture asserts that the coefficient stopping time
+$\tau(n)$ and the ordinary stopping time $\chi(n)$ agree for every integer $n\ge2$. In the
+shortcut map $T(n)=(3n+1)/2$ at odd inputs and $T(n)=n/2$ at even inputs, this asks whether
+$T^k(n)<n$ at the \emph{first} step $k$ where the coefficient $\rho_k=3^d/2^k$ falls below one.
+We prove that every first-crossing word with at most $75$ maximal runs of odd inputs descends,
+so a counterexample needs at least $76$ runs, crossing time $k\ge10\,439\,860\,591$ and
+$d\ge6\,586\,818\,670$ odd steps. The proof combines a realizer bound read off the length of
+each odd run with a Farey sandwich between two convergents of $\log_23$ and, in the tail, Rhin's
+effective irrationality measure. We then record three independent restrictions on a hypothetical
+counterexample: an exact signed comparator that reduces descent on a residue class to a test at
+its least eligible seed; a finite-word repetition bound showing that an initial square of length
+$\ell$ forces $\ell<35\log_2k$; and, from the reciprocal-sum theorem of Nikzad, Frinkle and
+Bagherzadeh, the restriction $\rho_k\ge1/\exp(B/3)=0.94308\ldots$ on a shortest counterexample.
+Every numerical claim is certified in exact rational arithmetic; $\ln2$ and $\ln3$ are never
+evaluated numerically. \textbf{This is not a proof of Terras's conjecture and excludes no
+divergent orbit.}
+\end{abstract}
+
+\section{What is being asked}
+Write $T(n)=(3n+1)/2$ when $n$ is odd and $T(n)=n/2$ when $n$ is even. Along the first $k$ steps
+from an odd $n$, let $d$ be the number of odd inputs. An induction gives the affine form
+\begin{equation}\label{eq:affine}
+2^kT^k(n)=3^dn+C_w,
+\end{equation}
+where $C_w$ depends only on the parity word $w$ of the first $k$ steps. Call
+$\rho_k=3^d/2^k$ the \emph{coefficient}. It is multiplied by $3/2$ at an odd step and halved at an
+even one, so it starts at $1$ and moves up and down; the \emph{first coefficient crossing} is the
+least $k$ with $\rho_k<1$. Terras's conjecture, in the form Hikawa \cite{hikawa2026} reviews, is
+that at that step the orbit is already below its start. A \emph{failure} is $T^k(n)\ge n$, equality
+included. An \emph{odd run} is a maximal block of consecutive odd inputs; one run may contain many
+odd steps. Hikawa records the equivalent criterion $C_w<(2^k-3^d)n$.
+
+Since an odd step multiplies $\rho$ by $3/2>1$, the crossing step is even, so
+$\rho_{k-1}\ge1>\rho_k$ and $\rho_k\in[1/2,1)$.
+
+\section{The signed comparator}
+Dividing \eqref{eq:affine} by $2^k$ gives the form we use throughout.
+\begin{proposition}\label{prop:comparator}
+With $M_w=C_w/3^d$,
+\[
+T^k(n)=\rho_k\,(n+M_w),\qquad\text{so}\qquad T^k(n)<n\iff n\bigl(\rho_k^{-1}-1\bigr)>M_w .
+\]
+Moreover, if the odd runs have lengths $\ell_1,\dots,\ell_s$ and run $i$ starts at time $t_i$,
+\begin{equation}\label{eq:runsum}
+M_w=\sum_{i=1}^{s}\frac{1-(2/3)^{\ell_i}}{\rho_{t_i}} .
+\end{equation}
+\end{proposition}
+\begin{proof}
+The first display is \eqref{eq:affine}. For \eqref{eq:runsum}, each odd step at time $j$
+contributes $2^j3^{-d_{j+1}}=1/(3\rho_j)$ to $M_w$, where $d_{j+1}$ counts odd steps through time
+$j$. Summing a run of $\ell$ consecutive odd steps from $t$ gives
+$\frac1{3\rho_t}\sum_{r<\ell}(2/3)^r=(1-(2/3)^\ell)/\rho_t$.
+\end{proof}
+Before a first crossing every proper prefix has $\rho_{t}\ge1$, so each run contributes less than
+one and each odd step contributes at most $1/3$:
+\begin{equation}\label{eq:Mbounds}
+M_w<s,\qquad M_w\le d/3 .
+\end{equation}
+Both are used below; the second is the sharper one when a word has many runs.
+
+\begin{remark}[Testing one seed decides a class]
+The realizers of a parity word of length $k$ form a single residue class modulo $2^k$. In
+Proposition \ref{prop:comparator} the word fixes $\rho_k$ and $M_w$, and the condition
+$n(\rho_k^{-1}-1)>M_w$ is monotone in $n$. So the least eligible seed $n\ge2$ of the class decides
+descent for the whole class, and a failure can only occur at one of $n,n+1,\dots,n+s-1$ by
+\eqref{eq:Mbounds}.
+\end{remark}
+
+\begin{example}\label{ex:59}
+The valuation word $(1,2,1,3,1)$ has parity word $11011001$ and least realizer $187$. Its
+coefficient first crosses at step $7$, before the valuation word is finished, so the relevant word
+is the prefix $1101100$, whose least realizer is $59$. There
+\[
+59-T^7(59)=\frac{(2^7-3^4)\cdot59-85}{2^7}=\frac{47\cdot59-85}{128}=21,
+\]
+so $T^7(59)=38$ and every seed in $59+128\Z$ descends at step $7$. Cutting the word at the
+crossing certifies $2^7$ seeds per period; using $187$ and its modulus $2^8$ certifies a set four
+times smaller. Both least realizers are verified exactly.
+\end{example}
+
+\section{Words with at most 75 odd runs}
+\begin{lemma}[run-length realizer bound]\label{lem:runbound}
+If an odd run starts at $x$ and lasts $\ell$ steps, the endpoint plus one equals
+$(3/2)^\ell(x+1)$, so $2^\ell\mid x+1$. Writing $D_i$ for the number of odd steps before run $i$
+and $L=\log_2(n+1)$, we get $2^{\ell_i}\le(n+1)(3/2)^{D_i}$, hence $D_{i+1}\le L+\alpha D_i$ with
+$\alpha=\log_23$, and therefore
+\[
+d\le G_sL,\qquad G_s=\sum_{j=0}^{s-1}\alpha^{\,j}.
+\]
+\end{lemma}
+
+\begin{theorem}\label{thm:75}
+Every first-crossing word with at most $75$ odd runs descends. Consequently a counterexample to
+Terras's conjecture has at least $76$ odd runs, crossing time $k\ge10\,439\,860\,591$, and at
+least $d\ge6\,586\,818\,670$ odd steps.
+\end{theorem}
+
+\begin{proof}
+Rozier and Terracol \cite[Cor.~5.4]{rozier2026} verify $\chi(n)=\tau(n)$ for $2\le n\le B$ with
+$B=28\cdot10^{18}$, so a failure has $n>B$. Put $\Lambda=k\ln2-d\ln3>0$. By
+Proposition \ref{prop:comparator} a failure gives $(e^\Lambda-1)n\le M_w$, hence with
+\eqref{eq:Mbounds}
+\begin{equation}\label{eq:lambda}
+0<\Lambda<s/n<s/B,\qquad 0<\Lambda/d<1/(3n)<1/(3B).
+\end{equation}
+
+\emph{The two large integers.} Let $(a,b)=(9\,809\,721\,694,\,6\,189\,245\,291)$ and
+$(u,v)=(630\,138\,897,\,397\,573\,379)$, the convergents of $\alpha=\log_23$ of index $20$ and
+$19$. One certifies $a/b<\alpha$ and $(u/v)\ln2-\ln3>1/(3B)$. With the second half of
+\eqref{eq:lambda} this forces $a/b<\alpha<k/d<u/v$. The determinant $bu-av=1$ makes $bk-ad$ and
+$ud-vk$ positive integers, and expanding gives $(k,d)=(ud-vk)(a,b)+(bk-ad)(u,v)$. Hence
+$k\ge a+u=10\,439\,860\,591$ and $d\ge b+v=6\,586\,818\,670$; this pair is the convergent of index
+$21$, the mediant of the two used, and it is the pair that occurs in Eliahou's work on nontrivial
+cycle lengths \cite{eliahou1993}.
+
+\emph{Smaller odd counts.} For $p/q<\alpha$ put $e=q\ln3-p\ln2>0$; since $k/d>\alpha$,
+$q\Lambda+de=(qk-pd)\ln2\ge\ln2$. Two pairs suffice, with certified enclosures
+$e_{\mathrm{I}}\in(5.22,5.24)\cdot10^{-18}$ at
+$(p,q)=(9\,881\,527\,843\,552\,324,\,6\,234\,549\,927\,241\,963)$ and
+$e_{\mathrm{II}}\in(1.24,1.25)\cdot10^{-19}$ at
+$(p,q)=(6\,724\,555\,128\,221\,608\,268,\,4\,242\,721\,909\,926\,539\,673)$. Pair I gives
+$d>1.26\cdot10^{17}$. Assuming $d<2^{61}$, pair II gives $\Lambda>9\cdot10^{-20}$, hence
+$n<75/(9\cdot10^{-20})$ and $n+1<2^{70}$; Lemma \ref{lem:runbound} with $G_{75}<1.72\cdot10^{15}$
+then gives $d<70\cdot1.72\cdot10^{15}=1.204\cdot10^{17}$, contradicting $d>1.26\cdot10^{17}$.
+
+\emph{The tail.} For $d\ge2^{61}$, Rhin's effective estimate \cite{rhin1987} (in the form used by
+\cite[Prop.~6.3]{rozier2026}) gives $\Lambda\ge k^{-13.3}$, so $n<75(2d)^{13.3}$ and
+$\log_2(n+1)<7+14\log_2(2d)$. With $2^j\le d<2^{j+1}$, Lemma \ref{lem:runbound} forces
+$2^j\le d<1.72\cdot10^{15}\,[\,7+14(j+2)\,]<2^j$, which fails already at $j=61$ (middle term
+$1.52908\cdot10^{18}<2^{61}$) and persists, the bracket growing by $14$ while $2^j$ doubles. Both
+cases are impossible.
+\end{proof}
+
+\begin{remark}[where each input enters]
+The Rozier--Terracol verification enters only as the lower bound $n>B$ in \eqref{eq:lambda}. The
+rational-approximation input is the Farey sandwich, and it alone produces the two large integers:
+they come from best-approximation theory on the convergents of $\log_23$, \emph{not} from Rhin,
+whose bound at these sizes is smaller than $10^{-130}$ and so inactive. Rhin is needed only for the
+tail $d\ge2^{61}$. Rozier and Terracol \cite[Rem.~5.5]{rozier2026} credit Simons with proposing
+classification by local maxima; Theorem \ref{thm:75} applies that idea to finite first crossings.
+\textbf{Priority for the first-crossing statement is not established here}; we have not located a
+literature match, which is not the same as there being none.
+\end{remark}
+
+\section{A family with arbitrarily many runs}
+\begin{proposition}\label{prop:110}
+Repeat the block $110$ exactly $h\ge1$ times and append zeros up to the first crossing. Every
+realizer descends there.
+\end{proposition}
+\begin{proof}
+One block acts by $H(x)+5=9(x+5)/8$, so $H^h(n)+5=9^h(n+5)/8^h$ is an integer and
+$8^h\mid n+5$, giving $n\ge8^h-5$. The normalized memory is $5\bigl(1-(8/9)^h\bigr)<5$ and the
+appended zeros do not change it. For $h\le63$ the length bound of Theorem \ref{thm:75} excludes
+failure. For $h\ge64$, Rhin gives $n\Lambda\ge(8^h-5)/(4h)^{13.3}>5$ since $k\le4h$ --- indeed
+$8^{64}-5>5\cdot256^{14}$ and $((h+1)/h)^{14}<8$ for $h\ge64$ --- contradicting $n\Lambda<M_w$.
+\end{proof}
+The periodic anchor $-5$ for the valuation block $(1,2)$ is from the realizer notes
+\cite{dj-floors2026}. The bound $8^h-5$ is a floor for the \emph{prefix} $(110)^h$ and must not be
+confused with the least seed of the completed crossing word: at $h=12$ the prefix floor is
+$8^{12}-5=68\,719\,476\,731$ while the completed word, of length $39$, has least seed
+$343\,597\,383\,675$. Both are verified exactly.
+
+\section{A finite-word repetition bound}
+\begin{proposition}\label{prop:square}
+If a failing first-crossing word begins with a square $UU$, $|U|=\ell$, then
+\[
+(4/3)^{\ell}<n+1,\qquad \ell<\frac{\log_2(n+1)}{\log_2(4/3)},
+\]
+and with $\log_2(n+1)<14.3\log_2k$ on the failing range, $\ell<35\log_2k$.
+\end{proposition}
+\begin{proof}
+The two copies of $U$ give the same affine data, so the difference of the two induced integers is
+divisible by $2^{2\ell}$; the proper-prefix condition $\rho_t\ge1$ on a first crossing makes that
+integer nonzero, so its absolute value is at least $2^{2\ell}$. Comparing with the growth of
+$x+1$ across $U$, which is at most $(3/2)^{\ell}(n+1)$, gives $2^{2\ell}\le(3/2)^{\ell}(n+1)\cdot$
+$2^{\ell}$, i.e. $(4/3)^{\ell}<n+1$. The constant $14.3/\log_2(4/3)=34.45\ldots<35$ is certified
+rationally.
+\end{proof}
+This detects repetition even when the run count is large, which is exactly where
+Theorem \ref{thm:75} is silent. \textbf{It is a finite-word statement} about one crossing prefix and
+should not be confused with the infinite-word irrationality theorems of \cite{dj-sturmian2026},
+which concern $\Phi$-values of aperiodic parity words and say nothing about descent.
+
+\section{A restriction from reciprocal sums}
+Let $Q=\prod_{j\ \mathrm{odd}}\bigl(1+\tfrac1{3m_j}\bigr)$ over the odd inputs before the crossing.
+Then $Q=1+M_w/n$ exactly, so a bound on the reciprocal sum is a bound on $M_w/n$. Nikzad, Frinkle
+and Bagherzadeh \cite{nfb2026} prove that a finite nonrepeating path all of whose inputs exceed
+$D=28\,019\,077\,177\,231\,758\,495$ has $\sum1/m_j<B_{\mathrm{NFB}}=45/256+10^{-6}+10^{-15}$;
+that theorem was independently reconstructed and certified in \cite{dj-indep2026}, conditional on
+the finite count of its Appendix 1D.
+\begin{proposition}\label{prop:recip}
+Let $n$ be a counterexample of shortest crossing length with $n>D$ and distinct pre-crossing
+inputs. Then $M_w/n\le\exp(B_{\mathrm{NFB}}/3)-1$ and hence
+\[
+\rho_k\ \ge\ \exp(-B_{\mathrm{NFB}}/3)\ =\ 0.9430895072\ldots
+\]
+\end{proposition}
+Before the crossing $\rho_j\ge1$ and $Q_j\ge1$, so $m_j\ge n$: the hypothesis ``all inputs exceed
+$D$'' is automatic once $n>D$. Choosing a counterexample of shortest crossing length is what makes
+the pre-crossing inputs distinct. Rozier--Terracol verify to $28\cdot10^{18}$, slightly below $D$;
+the height record through $D$ covers the difference. The constants $45/256$, $10^{-6}$ and
+$10^{-15}$ are the source's; retaining them unrounded rather than passing to $9/50$ is the only
+sharpening here.
+\begin{remark}
+Since $\rho_k\in[1/2,1)$, Proposition \ref{prop:recip} removes a window of logarithmic width
+$\log_2\bigl(1/0.94309\bigr)=0.0845$ out of $1$, i.e.\ $8.45\%$ of the coefficient range.
+\textbf{That is a width of an interval of coefficients, not a proportion of seeds.} A working
+draft quoted the cutoff $0.9441733669$; it does not reproduce, being larger than both the
+exponential form above and a conservative rational certificate $0.9415953366$, and it is not used.
+\end{remark}
+
+\section{The open question}
+Theorem \ref{thm:75} needs few runs; Proposition \ref{prop:square} needs a long initial square;
+Proposition \ref{prop:recip} needs a deep crossing. What survives all three is a word with many
+odd runs, a shallow crossing $\rho_k\in[0.9431,1)$, and no long initial square.
+\begin{quote}
+\textbf{Open.} Bound from below the least positive realizer of a first-crossing word with many odd
+runs, a shallow crossing, and no long initial repetition.
+\end{quote}
+A uniform bound on the reciprocal correction alone cannot settle this. It bounds $M_w/n$ by a
+constant, so it yields descent only when $\rho_k$ is below that constant's reciprocal; inside the
+shallow window the comparison $n(\rho_k^{-1}-1)>M_w$ turns on the actual size of $n$, which is a
+question about the least realizer of the word and not about the correction. The rational-shadow
+floors of \cite{dj-shadow2026} are the natural candidate, but their per-block gap radius
+$2^{s+1}/q$ is governed by the wall $|2^s-3^\ell|$ and is polynomially bounded by Baker-type
+estimates, while the least realizer grows exponentially in the word length.
+
+\section*{Reproducibility}
+All numerical claims are certified in exact rational arithmetic at
+\url{https://github.com/innerlightr-wq/terras-first-crossing}, commit
+\texttt{2b1501196737bb8f4cbf64801db9a545d25130c9}. Run
+\texttt{python3 scripts/verify\_crossing.py}; it prints \texttt{0 checks failed} in under a second.
+$\ln2$ and $\ln3$ are never evaluated numerically: they are enclosed between rationals by a
+$96$-term $\operatorname{artanh}$ series with a geometric tail, and every comparison uses the
+enclosure in the conservative direction.
+
+\section*{What this does not claim}
+This is not a proof of Terras's conjecture, and it excludes no divergent orbit. Three inputs are
+imported and not re-verified here: the Rozier--Terracol verification, Rhin's estimate, and the
+Nikzad--Frinkle--Bagherzadeh reciprocal bound (itself conditional on a finite count). Priority for
+the $75$-run statement is unestablished.
+
+\bibliographystyle{plain}\bibliography{refs}
+\end{document}

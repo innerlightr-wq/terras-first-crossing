@@ -1,0 +1,58 @@
+\begin{thebibliography}{1}
+
+\bibitem{eliahou1993}
+Shalom Eliahou.
+\newblock The $3x+1$ problem: new lower bounds on nontrivial cycle lengths.
+\newblock {\em Discrete Mathematics}, 118:45--56, 1993.
+
+\bibitem{hikawa2026}
+Kazunobu Hikawa.
+\newblock Research notes on terras' coefficient stopping time problem i:
+  Previous results and open problems, 2026.
+\newblock English translation, November 2026; Japanese original, Zenodo, 13
+  November 2026, DOI 10.5281/zenodo.24187839.
+
+\bibitem{dj-sturmian2026}
+Elias~De Jes\'us.
+\newblock Beyond {S}turmian words in the $3x+1$ periodicity conjecture: A
+  periodic-approximation and arithmetic-height bridge, 2026.
+\newblock Revision 5, 13 November 2026; Revision 4 deposited as Zenodo DOI
+  10.5281/zenodo.23070093.
+
+\bibitem{dj-shadow2026}
+Elias~De Jes\'us.
+\newblock Exact realizer congruences and rational-shadow bounds for {C}ollatz
+  words, 2026.
+\newblock Unpublished manuscript, 31 October 2026.
+
+\bibitem{dj-floors2026}
+Elias~De Jes\'us.
+\newblock Exact realizer floors for one- and two-defect valuation words in the
+  accelerated $3x+1$ map, 2026.
+\newblock Unpublished manuscript, 22 October 2026.
+
+\bibitem{dj-indep2026}
+Elias~De Jes\'us.
+\newblock Independent verification of high-path reciprocal bounds for
+  nonrepeating {C}ollatz trajectories, 2026.
+\newblock Unpublished manuscript, 3 November 2026.
+
+\bibitem{nfb2026}
+Behzad Nikzad, Karl Frinkle, and Fatemeh Bagherzadeh.
+\newblock On bounds for reciprocal sums and residues in {C}ollatz orbits, and
+  their consequences, 2026.
+\newblock Hexagon preprint 2611.00033v1.
+
+\bibitem{rhin1987}
+Georges Rhin.
+\newblock Approximants de {P}ad\'e et mesures effectives d'irrationalit\'e.
+\newblock In {\em S\'eminaire de Th\'eorie des Nombres, Paris 1985--86},
+  volume~71 of {\em Progress in Mathematics}, pages 155--164. 1987.
+
+\bibitem{rozier2026}
+Olivier Rozier and C.~Terracol.
+\newblock Paradoxical behavior in {C}ollatz sequences.
+\newblock {\em Discrete Mathematics}, 349:115167, 2026.
+\newblock arXiv:2502.00948v5.
+
+\end{thebibliography}
