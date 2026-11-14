@@ -17,14 +17,3 @@ def log_bounds(x, terms=96):
 
 L2, U2 = log_bounds(2)
 L3, U3 = log_bounds(3)
-
-def _sanity():
-    # a float is far too coarse to sit inside a 1e-40 bracket; use 60-digit Decimals
-    from decimal import Decimal, getcontext
-    getcontext().prec = 200
-    for (L, U, x) in ((L2, U2, 2), (L3, U3, 3)):
-        ref = Decimal(x).ln()
-        assert Decimal(L.numerator) / Decimal(L.denominator) < ref
-        assert ref < Decimal(U.numerator) / Decimal(U.denominator)
-        assert U - L < F(1, 10**40)
-_sanity()

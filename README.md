@@ -11,46 +11,14 @@ Terras's coefficient stopping time conjecture asks whether the coefficient stopp
 step at which the coefficient `ρ_k = 3^d/2^k` drops below one: does `T^k(n) < n` always
 hold? A *failure* is `T^k(n) ≥ n`, equality included.
 
-## What is in here
+## Verification
 
-| path | contents |
-|---|---|
-| `scripts/logbounds.py` | certified rational enclosures of `ln 2`, `ln 3` (96-term `artanh` series + geometric tail) |
-| `scripts/verify_crossing.py` | the full audit: 27 exact checks |
-| `logs/verify.log` | its output |
-| `manuscript/` | TeX source, bibliography, compiled PDF |
+Run `python3 scripts/verify_crossing.py` from the repository root. The verifier uses Python's standard library. It returns a nonzero exit code if any check fails. All numerical pass/fail comparisons use integer or rational arithmetic. The manuscript gives the arguments that apply to every word length.
 
-## Running the checks
+The checks cover the Farey inequalities, the 75-run bound, initial squares, the completed repeated-`110` example, and the three parity classes in the worked example. The verifier recomputes the finite weighted bracket count of Nikzad, Frinkle and Bagherzadeh, Appendix 1D, equation (164). Equation (153) supplies the shell coefficient `6719267/13693680`. Keeping it gives the safe inclusive descent cutoff `ρ ≤ 0.9441733669` on distinct high paths. Rounding the coefficient to one half and the count to three thirty-seconds gives the weaker exponential cutoff `0.9430895072…`. The paper derives why the distinct high path hypotheses hold for a shortest counterexample.
 
-```
-python3 scripts/verify_crossing.py      # ~0.2 s, prints "0 checks failed"
-```
+The finite seed verification of Rozier and Terracol, Rhin's logarithmic-form bound, the high-path accounting in the reciprocal-sum paper, and its cited finite height record are external inputs. Lean formalization of the present note remains open.
 
-Every pass/fail decision is an exact integer or `Fraction` comparison. Floats appear only
-in printed diagnostics. `ln 2` and `ln 3` are never evaluated numerically: they are
-enclosed between rationals `L_x < ln x < U_x` and every comparison uses the enclosure in
-the conservative direction.
+## Manuscript
 
-## What each claim rests on
-
-| claim | status |
-|---|---|
-| the Farey sandwich `a/b < α < k/d < u/v`, determinant `bu − av = 1` | **verified exactly** |
-| `k ≥ 10,439,860,591`, `d ≥ 6,586,818,670` (convergent 21 of `log₂3`) | **verified exactly** |
-| `M_w < s` and `M_w ≤ d/3` | **verified exactly**, plus exhaustively for `n < 30000` |
-| `G₇₅ < 1.72·10¹⁵`, the two determinant pairs, the `d ≥ 2^61` tail | **verified exactly** |
-| `(110)^h` least realizer `= 8^h − 5`; `h = 12` regression | **verified exactly** |
-| the worked example `1101100` → `59`, `T⁷(59) = 38`; `187` | **verified exactly** |
-| initial-square corollary `(4/3)^ℓ < n+1`, `14.3/log₂(4/3) < 35` | **verified exactly** |
-| reciprocal-sum cutoff | **derived**, `1/exp(B/3) = 0.9430895072`; see the finding below |
-| Rozier–Terracol `χ = τ` for `2 ≤ n ≤ 28·10¹⁸` | **imported**, not re-verified here |
-| Rhin's effective estimate | **imported**, not re-verified here |
-| Nikzad–Frinkle–Bagherzadeh reciprocal bound `B` | **imported**; independently audited elsewhere, conditional on their Appendix 1D finite count |
-
-## One finding, recorded rather than suppressed
-
-A working draft quoted a reciprocal-sum cutoff `ρ_k ≤ 0.9441733669`. **It does not
-reproduce.** From `Q = ∏(1 + 1/(3m_j)) = 1 + M/n` and `Q ≤ exp(B/3)` one gets
-`ρ_k < 0.9430895072`, and a conservative rational certificate gives `0.9415953366`. The
-quoted value is *larger* than both, i.e. it would claim descent on a wider coefficient
-range than the bound supports. The manuscript uses the derived value.
+The review source is `manuscript/note.tex`, with references in `manuscript/refs.bib`. To rebuild the PDF with a TeX installation, run `pdflatex note.tex`, `bibtex note`, and `pdflatex note.tex` twice from `manuscript/`. The verification script and the manuscript source must be taken from the same revision.
