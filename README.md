@@ -3,7 +3,19 @@
 Supporting material for the manuscript of the same name (Elias De Jesús, ORCID
 [0009-0007-0190-9143](https://orcid.org/0009-0007-0190-9143)).
 
-**Status: ready for author review. Not released, not deposited, no DOI.**
+**Status: published.**
+
+| | |
+|---|---|
+| Zenodo | [10.5281/zenodo.24231556](https://doi.org/10.5281/zenodo.24231556) |
+| Hexagon Math | `2611.00459` — submitted, awaiting moderator posting |
+| deposited PDF | `manuscript/note.pdf`, 7 pp, sha256 `5921af74ca5eb060125b8bc2380038c0c42c1f59e5990d81419840f613460c64` |
+| manuscript commit | `6251ffbff0fb1785b49663d411410e5f848dfb7b` (branch `author-review`) |
+| verifier pin cited in the paper | `a93b1e82d13fab7024c380ae36320e4ec62a73f9` |
+
+The deposited record is immutable. Any later change to `manuscript/` makes this
+repository diverge from the published PDF; record such changes as a new Zenodo version
+rather than editing in place.
 
 Terras's coefficient stopping time conjecture asks whether the coefficient stopping time
 `τ(n)` equals the ordinary stopping time `χ(n)` for every `n ≥ 2`. Equivalently, writing
