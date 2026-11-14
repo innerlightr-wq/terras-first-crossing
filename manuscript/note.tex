@@ -319,7 +319,9 @@ it with the threshold of the actual first-crossing prefix.
 
 \newpage
 \section*{Reproducibility}
-All numerical claims of this note are certified in exact rational arithmetic in the
+The companion verifier checks the numerical inequalities used in the proofs,
+recomputes the finite bracket count, and verifies the worked examples using integer and
+rational arithmetic. It lives in the
 companion repository
 \url{https://github.com/innerlightr-wq/terras-first-crossing}, with the verification
 code pinned at the immutable commit
@@ -339,6 +341,13 @@ The proofs for arbitrary word lengths are in the text.
 The finite seed verification of Rozier--Terracol, Rhin's estimate, the high-path
 accounting of Nikzad--Frinkle--Bagherzadeh and the height record cited above are
 external inputs. The general case of Terras's conjecture remains open.
+
+\section*{AI assistance and author responsibility}
+The author directed this research and used Claude (Anthropic) and ChatGPT (OpenAI) for
+proof exploration and revision, cross-checking the reciprocal-sum estimates against the
+source paper, developing and testing the exact-arithmetic verifier, and drafting the
+manuscript. The author takes responsibility for the mathematical claims, their
+interpretation, and any errors.
 
 \bibliographystyle{plain}\bibliography{refs}
 \end{document}
