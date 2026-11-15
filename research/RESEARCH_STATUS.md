@@ -1,7 +1,12 @@
 # Research Status Ledger — Terras First Coefficient Crossing
 
 Elias De Jesús · ORCID [0009-0007-0190-9143](https://orcid.org/0009-0007-0190-9143)
-Frozen 16 November 2026 at `97b8fe2a`, tag `terras-research-freeze-2026-11`.
+Frozen 15 November 2026 at `97b8fe2a`, tag `terras-research-freeze-2026-11`.
+
+Dating note: the individual reports in this directory carry the header date 16 November
+2026, one day ahead of their git commit dates, which are all 2026-11-15. The commit dates
+are authoritative; the report headers were left as written rather than edited after the
+freeze.
 
 This ledger records the research in chronological order with an explicit status for each
 item. **Passing a computational check is not independent formal verification.** Every

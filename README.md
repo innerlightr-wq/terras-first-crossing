@@ -40,7 +40,7 @@ Terras's coefficient stopping time conjecture asks whether the coefficient stopp
 step at which the coefficient `ρ_k = 3^d/2^k` drops below one: does `T^k(n) < n` always
 hold? A *failure* is `T^k(n) ≥ n`, equality included.
 
-## Research program (frozen 16 November 2026)
+## Research program (frozen 15 November 2026)
 
 Beyond the published paper, this repository is an **open research record** of work on the same
 problem. The frozen checkpoint is tag `terras-research-freeze-2026-11` at commit `97b8fe2a`.
