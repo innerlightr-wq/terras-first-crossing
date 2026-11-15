@@ -15,7 +15,7 @@ independent reconstruction, **not** a review of that script.
 ## Correction pass, 15 November 2026
 
 A reviewer recomputed all five height bounds independently and confirmed the verdict, with
-corrections. Applied, and the verifier extended from 19 to 29 checks:
+corrections. Applied, and the verifier extended from 19 to 31 checks:
 
 | item | correction |
 |---|---|
@@ -31,7 +31,19 @@ corrections. Applied, and the verifier extended from 19 to 29 checks:
 | "makes Lagarias's `k₀` explicit" | **wrong**: his `k₀` thresholds *steps*, our hypothesis bounds *runs*, and his conclusion exempts the smallest class element while ours covers it. Claim withdrawn and replaced by Corollary 9. |
 | AI-use counts | I had them reversed. The first **three** height bounds improved; the last **two** reproduced. |
 | Alick | now a direct bibliography citation with file, lines and commit. |
-| bundles | `r3` hexagon zip, Zenodo tarball (now including `verify_81_runs.py`), PDF and self-contained TeX regenerated; `r2` preserved. Digests identified per script: `verify_crossing.py` `f852c88311071a0d` (unchanged), `verify_81_runs.py` `10bdf41b1a2d4c1b`. |
+| bundles | `r3` hexagon zip, Zenodo tarball (now including `verify_81_runs.py`), PDF and self-contained TeX regenerated; `r2` preserved. Digests identified per script: `verify_crossing.py` `f852c88311071a0d` (unchanged), `verify_81_runs.py` `ca338694ac39ff93`. |
+
+### Second correction pass
+
+| item | correction |
+|---|---|
+| Lemma 6 hypothesis | stated only `Λ > λ` while the proof divides by `λ`. Now **`0 < λ < Λ`**. All five rows use positive `λ`, so Theorem 8 already met the intended hypothesis. |
+| "`(4)` is the case `r = 0`" | **false and deleted.** Putting `r = 0` in `(5)` leaves a spurious factor `1 + 81/B`, so `(4)` (`n+1 < 1+81/λ`) is strictly sharper. The two are proved together but neither contains the other. |
+| "ineffective `k₀`" (pages 2, 7, 10) | **wrong** — Lagarias calls his constant effectively computable. All three now read "effectively computable but not evaluated there", and the summary is: *Corollary 9 removes the length restriction `k ≥ k₀` from the conclusion that only the least eligible seed can fail.* |
+| old-coincidence sentence (page 6) | removed as originally intended; the Hercher `m ≥ 83` remark stays. |
+| displayed arithmetic | the printed chain `(0.69 − q·81/B)/5.24×10⁻¹⁸ = 1.282375×10¹⁷ > 1.28×10¹⁷` now has its own check, so the *displayed* rounded form closes and not merely the certified one. (My earlier `1.288×10¹⁷` used the certified `ln 2` enclosure rather than the displayed `0.69`.) |
+
+Verifier extended to **31 checks**; its digest is now `ca338694ac39ff93`, updated in the note.
 
 **New result added (reviewer's suggestion, verified):**
 
@@ -223,6 +235,6 @@ particular it is independent of Justin Alick's Lean two-run bounds, which give t
 ```
 cd ~/scratch/tfc-81run
 python3 scripts/verify_crossing.py     # 51/51 — pinned release verifier, unchanged
-python3 scripts/verify_81_runs.py      # 29/29 — the new certificate
+python3 scripts/verify_81_runs.py      # 31/31 — the new certificate
 python3 research/audit81.py            # 19/19 — the full audit incl. both lemmas
 ```

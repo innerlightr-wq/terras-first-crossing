@@ -114,7 +114,7 @@ $k^{-13.3}$), fed into (2.14). \textbf{``Only the least element of the class can
 Theorem~E, asymptotically in $k$.}
 
 What the present section adds is only this. The criterion is stated with no ``sufficiently
-large'' and no ineffective $k_0$: it is a single monotone comparison valid at every $k$, so one
+large'' and no threshold $k_0$: it is a single monotone comparison valid at every $k$, so one
 evaluation at $r(w)$ decides the class outright. And a failure is pinned to the $s$ endpoints
 $n,\dots,n+s-1$. The quantitative work is in \S\ref{sec:75}, where the run decomposition
 \eqref{eq:runsum} replaces Lagarias's cruder admissibility estimate
@@ -174,16 +174,18 @@ $M_w$ is large has small $\rho_{t_i}$, hence small $x_i$.
 
 \begin{lemma}[splitting]\label{lem:split}
 Let a first-crossing word have $s\le81$ odd runs, let its realizer fail to descend, and suppose
-$\Lambda>\lambda$. Then
+$0<\lambda<\Lambda$. Then
 \begin{equation}\label{eq:split0}
  n+1<1+81/\lambda .
 \end{equation}
 If moreover $\lambda>r/B$ for an integer $r\ge1$, then $s>r$, and among the $s-1$ noninitial
 runs the $r$ with the largest contributions $m_i$ all begin at integers satisfying
 \begin{equation}\label{eq:split}
- x_i+1<1+\frac{(81-r)\,(1+81/B)}{\lambda-r/B},
+ x_i+1<1+\frac{(81-r)\,(1+81/B)}{\lambda-r/B}.
 \end{equation}
-of which \eqref{eq:split0} is the case $r=0$.
+The two bounds are proved together but neither contains the other: putting $r=0$ in
+\eqref{eq:split} would leave a spurious factor $1+81/B$, so \eqref{eq:split0} is the sharper
+statement for the initial run.
 \end{lemma}
 \begin{proof}
 A failure gives $(e^\Lambda-1)n\le M_w$ by Proposition \ref{prop:comparator}, and $e^t-1>t$,
@@ -331,8 +333,8 @@ values of $d$.
 
 The next corollary concerns \emph{all} words, with no hypothesis on the run count. It is the
 effective form of the exemption in Lagarias's Theorem~E: that theorem leaves the smallest
-element of a class unresolved for $k\ge k_0$ with $k_0$ effectively computable but not
-evaluated, and the statement below removes the threshold altogether.
+element of a class unresolved for $k\ge k_0$, with $k_0$ effectively computable but not
+evaluated there, and the statement below removes the length restriction altogether.
 
 \begin{corollary}\label{cor:least}
 Every counterexample to Terras's conjecture is the least eligible seed of its parity class.
@@ -388,10 +390,8 @@ complete: were step $k$ odd we would have $2^{k-1}\le3^{d-1}$ and $2^k>3^d$, whe
 $3^d<2^k\le2\cdot3^{d-1}<3^d$. The crossing therefore occurs in the even block that follows
 the last run, as the proof of Lemma \ref{lem:restart} uses. Their bounds also use
 cyclicity, through the closing of the product around the cycle, which a finite path does not
-provide. In an earlier revision the threshold here was $76$, numerically equal to the
-Simons--de Weger value $m\ge76$; that was a coincidence of similar inputs, and it has now
-disappeared, since the splitting lemma raises our threshold to $82$ while with a modern
-verification range their cycle bound becomes $m\ge83$ \cite{hercher2023}.
+provide. With a modern verification range their cycle bound becomes $m\ge83$
+\cite{hercher2023}.
 
 A different route to a run threshold proceeds from a bound on the first two runs of every small
 seed. Justin Alick has formalised such local two-run bounds in Lean~4 \cite{alick2026}, among
@@ -407,7 +407,8 @@ Remark~\ref{rem:classical} gives the locators. His (2.14) is our descent criteri
 after rearrangement, and his Theorem~E already proves, by exactly our route --- linear forms in
 logarithms fed into that criterion --- that for admissible words of length $k\ge k_0$ only the
 smallest element of the class can fail. Two things are left to us, and they are different from
-each other: Corollary~\ref{cor:least} removes the ineffective $k_0$ from that exemption, while
+each other: Corollary~\ref{cor:least} removes the length restriction $k\ge k_0$ from that
+exemption, while
 Theorem~\ref{thm:75} proves outright descent, for the smallest element included, under a
 hypothesis on the run count rather than on $k$. Lagarias also records \cite[\S2.3]{lagarias1985} that Terras
 \cite{terras1976} and ``later Garner'' \cite{garner1981} conjectured the equality, which
@@ -601,7 +602,7 @@ $k\ge10\,439\,860\,591$, $d\ge6\,586\,818\,670$ and a threshold of $82$ runs; th
 and restart lemmas, which apply the run bound at several interior starts rather than once from
 the seed; descent for the whole repeated-$110$ family, which has arbitrarily many runs; the
 finite-word square bound $|U|<35\log_2k$; Corollary \ref{cor:least}, which removes the
-ineffective threshold from the exemption in Lagarias's Theorem~E; and the
+length restriction from the conclusion that only the least eligible seed can fail; and the
 reciprocal-sum restriction $\rho_k>0.9441733669$ on a shortest counterexample. Subject to the
 priority caveat of Remark \ref{rem:history}.
 
@@ -634,13 +635,14 @@ $d>1.28\cdot10^{17}$, the whole tail $d\ge2^{65}$ together with the failure at $
 row of the five-row table with its $\lambda$, $H$ and resulting bound on $d$, each row's
 $\lambda$ being recomputed from the \emph{printed} ceiling of the row above. It also checks
 the four printed $e$-enclosures, the hypothesis of Corollary \ref{cor:least}, and that the
-crossing step is even. It reports $29$ checks.
+crossing step is even, and that the displayed rounded form of the lower bound on $d$ also
+closes. It reports $31$ checks.
 The script checks the numerical inequalities with integers and rationals,
 encloses $\ln2$ and $\ln3$ by a 96-term series with a geometric tail, recomputes the
 finite bracket sum in (164) of \cite{nfb2026}, and encloses each exponential cutoff by
 alternating Taylor bounds. The SHA-256 digest of \texttt{verify\_crossing.py} begins
 \texttt{f852c88311071a0d}; that of \texttt{verify\_81\_runs.py} begins
-\texttt{10bdf41b1a2d4c1b}. Both scripts are included in the deposit bundle. The orbit and residue-class examples are finite checks.
+\texttt{ca338694ac39ff93}. Both scripts are included in the deposit bundle. The orbit and residue-class examples are finite checks.
 The proofs for arbitrary word lengths are in the text.
 
 The finite seed verification of Rozier--Terracol, Rhin's estimate, the high-path

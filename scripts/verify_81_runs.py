@@ -126,6 +126,11 @@ chk("that lambda still yields H = 68 and the same final bound",
     clog2(max(1 + F(81)*(1+F(81,B))/lam4,
               1 + F(S-7)*(1+F(81,B))/(lam4-F(7,B)))) == 68)
 
+chk("the DISPLAYED rounded form (0.69 - q*81/B)/5.24e-18 also exceeds 1.28e17",
+    (F(69,100) - F(NAMED[0][1][1]*S, B))/(F(524,100)*10**-18) > F(128,100)*10**17,
+    "d >= %.6e" % float((F(69,100) - F(NAMED[0][1][1]*S, B))/(F(524,100)*10**-18)))
+chk("0.69 is a valid lower bound for ln 2", F(69,100) < LN2_LO)
+
 print("=== Corollary: every counterexample is the least eligible seed of its class ===")
 import math
 chk("14.3 log2 k < k for k = 128 (and the gap grows)", F(143,10)*F(7) < 128,
