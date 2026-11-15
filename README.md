@@ -3,22 +3,32 @@
 Supporting material for the manuscript of the same name (Elias De Jesús, ORCID
 [0009-0007-0190-9143](https://orcid.org/0009-0007-0190-9143)).
 
-**Status: revision 2 prepared, not deposited. Version 1 is published.**
+**Status: revision 3 (the 81-run theorem) published as Zenodo v3.**
 
-Revision 2 adds historical attribution (Garner 1981; Simons--de Weger 2005; Hercher 2023 and
-its corrigendum; Terras 1976 and Lagarias 1985; Rozier--Terracol 2026; Hikawa 2026) and a
-status-of-results section. No proof or constant is changed and the verifier is untouched.
-It should be deposited as a **new Zenodo version** of the existing record, not in place of it.
+Revision 3 adds the splitting and restart lemmas, raises the run threshold from 75 to 81
+(so a counterexample needs at least 82 maximal odd runs), adds Corollary 9 (every
+counterexample is the least eligible seed of its parity class), and adds a second verifier.
+Revision 2 added the historical attribution (Garner 1981; Simons--de Weger 2005; Hercher 2023
+and its corrigendum; Terras 1976 and Lagarias 1985; Rozier--Terracol 2026; Hikawa 2026).
 
 | | |
 |---|---|
-| Zenodo | [10.5281/zenodo.24231556](https://doi.org/10.5281/zenodo.24231556) |
-| Hexagon Math | `2611.00459` — submitted, awaiting moderator posting |
-| deposited PDF | `manuscript/note.pdf`, 7 pp, sha256 `5921af74ca5eb060125b8bc2380038c0c42c1f59e5990d81419840f613460c64` |
-| manuscript commit | `6251ffbff0fb1785b49663d411410e5f848dfb7b` (branch `author-review`) |
+| Zenodo concept DOI (all versions) | [10.5281/zenodo.24231555](https://doi.org/10.5281/zenodo.24231555) |
+| Zenodo v3 — current | [10.5281/zenodo.24247351](https://doi.org/10.5281/zenodo.24247351) (2026-11-15) |
+| Zenodo v2 — attribution revision | [10.5281/zenodo.24238605](https://doi.org/10.5281/zenodo.24238605) (2026-11-15) |
+| Zenodo v1 — first release | [10.5281/zenodo.24231556](https://doi.org/10.5281/zenodo.24231556) (2026-11-14) |
+| Hexagon Math | `2611.00459` — v1 submitted, awaiting moderator posting |
+| deposited v3 PDF | `manuscript/note.pdf`, 12 pp, 312 906 bytes, md5 `b977d11b6f56fc8e332c904b583bfcf7`, sha256 `cbb73de110bf46b89cdbd5bedb7f448f6429aa00b2cee88bc485bf05cffbbaf5` |
+| manuscript commit | `2bd7811fc3e7d551a8f201f254f8541daf07ec2e` (branch `research-81-run`) |
 | verifier pin cited in the paper | `a93b1e82d13fab7024c380ae36320e4ec62a73f9` |
+| `scripts/verify_crossing.py` | 51 checks, sha256 begins `f852c88311071a0d` (unchanged since v1) |
+| `scripts/verify_81_runs.py` | 31 checks, sha256 begins `ca338694ac39ff93` (new in v3) |
 
-The deposited record is immutable. Any later change to `manuscript/` makes this
+The v3 record carries `note.pdf` only. The companion bundle
+`packages/zenodo-package-r3.tar.gz` holds both verifiers and the TeX sources but has **not**
+been deposited; see the note in `research/EIGHTYONE_AUDIT.md`.
+
+Each deposited record is immutable. Any later change to `manuscript/` makes this
 repository diverge from the published PDF; record such changes as a new Zenodo version
 rather than editing in place.
 

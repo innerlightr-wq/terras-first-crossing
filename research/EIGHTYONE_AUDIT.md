@@ -60,6 +60,29 @@ first-crossing word with 82 or more odd runs** — now the wording of the status
 
 ---
 
+## Deposit record, 15 November 2026
+
+| | |
+|---|---|
+| concept DOI (all versions) | `10.5281/zenodo.24231555` |
+| **v3 — this revision** | `10.5281/zenodo.24247351`, 2026-11-15, CC BY 4.0 |
+| v2 — attribution revision | `10.5281/zenodo.24238605`, 2026-11-15 (9 pp) |
+| v1 — first release | `10.5281/zenodo.24231556`, 2026-11-14 (7 pp) |
+
+The deposited `note.pdf` is **byte-identical to this branch's build**: 312 906 bytes,
+md5 `b977d11b6f56fc8e332c904b583bfcf7`, confirmed against the Zenodo API. So v3 carries both
+correction passes.
+
+> **One open discrepancy to settle.** The v3 record contains `note.pdf` only, but the note's
+> Reproducibility section says "Both scripts are included in the deposit bundle." `v1` did
+> include `zenodo-package.tar.gz`, yet `verify_81_runs.py` did not exist then, so **that script
+> is not in any deposited record**. Two clean options: add `packages/zenodo-package-r3.tar.gz`
+> to the concept record as a v4 (files on a published Zenodo record are immutable), or soften
+> the sentence in the next revision to cite the digests and the repository rather than the
+> bundle. The digests printed in the note are correct either way.
+
+---
+
 ## Verdict: the candidate theorem PASSES
 
 > **Every eligible realizer of a first-crossing word with at most 81 maximal odd runs descends
