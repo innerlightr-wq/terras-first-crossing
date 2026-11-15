@@ -3,7 +3,12 @@
 Supporting material for the manuscript of the same name (Elias De Jesús, ORCID
 [0009-0007-0190-9143](https://orcid.org/0009-0007-0190-9143)).
 
-**Status: published.**
+**Status: revision 2 prepared, not deposited. Version 1 is published.**
+
+Revision 2 adds historical attribution (Garner 1981; Simons--de Weger 2005; Hercher 2023 and
+its corrigendum; Terras 1976 and Lagarias 1985; Rozier--Terracol 2026; Hikawa 2026) and a
+status-of-results section. No proof or constant is changed and the verifier is untouched.
+It should be deposited as a **new Zenodo version** of the existing record, not in place of it.
 
 | | |
 |---|---|

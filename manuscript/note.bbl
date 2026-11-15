@@ -5,6 +5,20 @@ Shalom Eliahou.
 \newblock The $3x+1$ problem: new lower bounds on nontrivial cycle lengths.
 \newblock {\em Discrete Mathematics}, 118:45--56, 1993.
 
+\bibitem{garner1981}
+Lynn~E. Garner.
+\newblock On the {C}ollatz $3n+1$ algorithm.
+\newblock {\em Proceedings of the American Mathematical Society}, 82(1):19--22,
+  1981.
+
+\bibitem{hercher2023}
+Christian Hercher.
+\newblock There are no {C}ollatz-$m$-cycles with $m\le91$.
+\newblock {\em Journal of Integer Sequences}, 26(3), 2023.
+\newblock Article 23.3.5. Corrigendum (Theorem 21),
+  \url{https://cs.uwaterloo.ca/journals/JIS/VOL26/Hercher/corrigendum.pdf}; the
+  conclusion $m\ge92$ is unaffected.
+
 \bibitem{hikawa2026}
 Kazunobu Hikawa.
 \newblock Research notes on {Terras}' coefficient stopping time problem {I}:
@@ -39,6 +53,11 @@ Elias~De Jes\'us.
   nonrepeating {C}ollatz trajectories, 2026.
 \newblock Unpublished manuscript, 3 November 2026.
 
+\bibitem{lagarias1985}
+Jeffrey~C. Lagarias.
+\newblock The $3x+1$ problem and its generalizations.
+\newblock {\em American Mathematical Monthly}, 92(1):3--23, 1985.
+
 \bibitem{nfb2026}
 Behzad Nikzad, Karl Frinkle, and Fatemeh Bagherzadeh.
 \newblock On bounds for reciprocal sums and residues in {C}ollatz orbits, and
@@ -58,6 +77,15 @@ Olivier Rozier and Claude Terracol.
 \newblock Paradoxical behavior in {C}ollatz sequences.
 \newblock {\em Discrete Mathematics}, 349:115167, 2026.
 \newblock arXiv:2502.00948v5.
+
+\bibitem{simonsdeweger2005}
+John Simons and Benne de~Weger.
+\newblock Theoretical and computational bounds for $m$-cycles of the $3n+1$
+  problem.
+\newblock {\em Acta Arithmetica}, 117(1):51--70, 2005.
+\newblock The bound was subsequently raised; Hercher \cite{hercher2023} reports
+  $m\ge76$ for Simons--de Weger, and $m\ge83$ on substituting a modern
+  verification range.
 
 \bibitem{terras1976}
 Riho Terras.
