@@ -20,7 +20,7 @@ multiplicity constant and its hardcoded 163-assertion changed).
 > Three findings carry that:
 >
 > 1. **`σ_m` is shell-independent**, so `σ₁₆₃ = 3 611 678 508` transfers verbatim to any shell
->    forcing `m ≥ 163`. **3 741 new shells** pass every cheap test, the best with **1733×**
+>    forcing `m ≥ 163`. **474 new shells** pass every cheap test, the best with **1601×**
 >    margin against the 21/7 shell's 154×. **[Phase 2 succeeds.]**
 > 2. **Prefix-localization is refuted**, rigorously and by a clean factor: `σ₇₆ = 1 303 955 580`
 >    against a requirement of `3.4365×10⁹` — short by **2.635×**. **[Phase 3 negative.]**
@@ -30,6 +30,54 @@ multiplicity constant and its hardcoded 163-assertion changed).
 >    around `K ~ 10³⁰`. **[Phase 5: no infinite family.]**
 
 ---
+
+## Addendum, same day — a defect in my own Phase 2 screen
+
+My first screen omitted a necessary schedule condition. The eight-byte tiling must fit exactly
+between the 8-bit head and the 9-bit tail, which forces
+
+```
+    K ≡ 1 (mod 8) ,   8 + 8·nb = K − 9 ,   a(8) = 7 ,   a(K−9) = D − 4 .
+```
+
+I had checked only `5 < 8D/K < 6`. The first candidate I reported,
+`D = 889 480 628 870 603 289 323`, has `K ≡ 3 (mod 8)` and is therefore **invalid** — its
+head/tail do not align with the byte grid, though every other condition held. Corrected
+figures: **474** shells pass (not 3 741), and the strongest is
+
+| | corrected strongest candidate |
+|---|---|
+| `D` | `903 003 915 299 123 681 908` |
+| `K` | `1 431 227 343 753 494 174 081` |
+| forced multiplicity | `m = 165` (`≥ 163`, so `σ₁₆₃` reusable) |
+| required span `V/2^104` | `2.256229×10⁶` |
+| **anticipated margin** | **1600.76×** (21/7 shell: 154.49×) |
+| early-crossing sites | `1388.2` |
+| lattice form | `D = 57·q₃₇ + 28·q₃₈` |
+
+This candidate's **endpoint first-crossing chain is now fully verified** (`research/transfer_addendum.py`):
+legal schedule with `a(8) = 7` and `a(K−9) = D−4`; boundary coefficient `> 2.999`;
+`ρ < 3^{1+η} < 256/81` before a six-one byte; all 8 head prefixes and all 9 tail starts above
+the line; and no internal byte prefix crossing except `00111110` at its second zero. The 21/7
+shell passes the same chain as a regression. What remains for a theorem there is the exact
+early-crossing filter at ≈1388 sites and the per-byte memory bound — **no new residue
+enumeration**.
+
+### Phase 1 component table (added)
+
+| component | depends on `(K,D)` | alphabet | `past` | `F`/`L` |
+|---|---|---|---|---|
+| 1 drift + 8-step schedule | yes: `η`, `Λ`, and `K ≡ 1 (mod 8)` | no | no | no |
+| 2 window multiplicity | yes: six-one count `≈ 0.00593K` | yes: `7 s^F` | edge loss only | yes: `s^F` |
+| 3 residues and `σ_m` | **not at all** | yes: `R = alphabet^{past}` | yes: modulus `3^{5·past}` | only via `m` |
+| 4 distinctness from marker | no | yes: marker length, junctions | no | no |
+| 5 floor vs ceiling | yes: `Q`, `M`, `ρ` bracket | via `σ_m` | via `σ_m` | yes: `2^L` |
+
+**Universal identities:** `ρ_t = 3^{2−{tD/K}}e^{−tΛ/K}`; `3^{1+η} < 256/81 ⟺ Λ > 0`;
+`η → 8log₃2 − 5` hence `past + F ≤ 19`; the concatenation carry rule and its
+`2^{−(8·past+L)}` normalization; `σ_m` monotone and shell-independent.
+**Favourable to the 21/7 shell specifically:** `KΛ/ln3 = 130.5` (only 131 sites to filter);
+`m = 163` attained with no slack (ratio 162.69); the 154.49× span room.
 
 ## A. General theorem — **[PROVED]**
 
@@ -162,7 +210,7 @@ maximised under the cap at `F = 13`, `past = 6`, value `4.090×10²⁰` (the 21/
 | | |
 |---|---|
 | **PROVED** | the multiplicity–span criterion with its normalization, translation and wraparound qualifications; `σ_m` shell-independence and monotonicity in `m`, hence reusability of `σ₁₆₃`; universality of `η` and the cap `past + F ≤ 19`; cancellation of `K`; linear growth of the early-crossing enumeration |
-| **COMPUTATIONAL** | 3 741 screened shells and the strongest candidate's five certificates; `σ₇₅ = 1 279 148 121`; `σ₇₆ = 1 303 955 580`; the 21/7 regression at 154.49× |
+| **COMPUTATIONAL** | 474 screened shells (corrected from 3 741) and the strongest candidate's five certificates; `σ₇₅ = 1 279 148 121`; `σ₇₆ = 1 303 955 580`; the 21/7 regression at 154.49× |
 | **REFUTED** | prefix-localization at the surviving site (short by 2.635×) and at every prefix fraction below 100%; an infinite family by this mechanism |
 | **NOT CLAIMED** | a second-shell theorem — the candidate passes only the cheap tests; and no probabilistic estimate was used where an exact bound was needed, except the clearly-labelled `σ_m ∼ (m−1)3^t/\|R\|` model in the prefix table |
 | **OPEN** | completing the strongest candidate's early-crossing filter (≈1458 sites); whether a different block length changes `⌊1/η⌋` usefully |
@@ -181,6 +229,7 @@ python3 research/scaling_probe.py     # Phase 1/5: eta, the cap, the obstruction
 python3 research/shell_search.py      # Phase 4 criterion + regression; semiconvergent screen
 python3 research/shell_lattice.py     # Phase 2: lattice shells, strongest candidate
 python3 research/prefix_local.py      # Phase 3: localization quantities
+python3 research/transfer_addendum.py # Phase 1 table + candidate first-crossing chain
 cd research && g++ -O3 -std=c++20 -fopenmp span76.cpp -o span76 && OMP_NUM_THREADS=6 ./span76
 cd .. && python3 scripts/verify_crossing.py && python3 scripts/verify_81_runs.py
 ```
