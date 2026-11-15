@@ -88,19 +88,36 @@ If a seed $n$ fails, its endpoint satisfies $0\le T^k(n)-n<s$ by
 Proposition \ref{prop:comparator} and \eqref{eq:Mbounds}.
 \end{remark}
 
-\begin{remark}[What is classical here]
-The residue-class correspondence is Terras \cite[Thm.~1.2, Cor.~1.3]{terras1976}, and Garner
-\cite[\S4]{garner1981} gives it in the coefficient-stopping-time form, modulo $2^{1+p(m)}$.
-That it suffices to test small members of the class is also classical: Terras
-\cite[Thm.~1.9]{terras1976} shows the two stopping times agree for all sufficiently large
-members of a class with given coefficient stopping time, and \cite[Cor.~2.3,
-Thm.~2.10]{terras1976} confine the values needing checking to a finite range once the coefficient
-stopping time is bounded; Lagarias \cite[\S2.2]{lagarias1985} reviews both, and Hikawa
-\cite{hikawa2026} restates them. \textbf{The contribution of the remark above is only that the
-test is exact and is a single comparison.} Proposition \ref{prop:comparator} makes the descent
-condition monotone in the seed, so one evaluation at $r(w)$ decides the whole class, with no
-``sufficiently large'' threshold and no finite search; and a failure is pinned to the $s$
-endpoints $n,\dots,n+s-1$.
+\begin{remark}[What is classical here]\label{rem:classical}
+Almost all of the above is in Lagarias's survey \cite[\S2.2--\S2.3]{lagarias1985}, and the
+reader should not take any of it as new.
+
+The residue-class correspondence is Terras \cite[Thm.~1.2, Cor.~1.3]{terras1976} and is
+Theorem~B of \cite{lagarias1985}; Garner \cite[\S4]{garner1981} gives it in the
+coefficient-stopping-time form, modulo $2^{1+p(m)}$. Lagarias's equations (2.4)--(2.6) are
+Proposition~\ref{prop:comparator}: his $T^{(k)}(n)=\lambda_k(n)n+\rho_k(n)$ has
+$\lambda_k=\rho_k$ in our notation and $\rho_k(v)=C_w/2^k$, so that $M_w=\rho_k(v)/\lambda_k$.
+His (2.13)--(2.14) then state that the elements of a class with
+\[
+n\;>\;\varepsilon_k^{-1}\rho_k(v),\qquad \varepsilon_k=1-\lambda_k(v),
+\]
+have $\omega(n)=\sigma(n)$, and rearranging that inequality gives
+$n(\rho_k^{-1}-1)>M_w$ \emph{exactly}. \textbf{The descent criterion above is therefore
+Lagarias's, not ours.}
+
+Sharper still, Theorem~E of \cite{lagarias1985} states that there is an effectively computable
+$k_0$ such that for admissible $\mathbf v$ of length $k\ge k_0$, every element of $S(\mathbf
+v)$ except possibly the smallest has stopping time $k$. Its proof is the one we use: a linear
+forms in logarithms bound (there Baker--Feldman, $|k\log2-l\log3|\ge k^{-c_0}$; here Rhin's
+$k^{-13.3}$), fed into (2.14). \textbf{``Only the least element of the class can fail'' is thus
+Theorem~E, asymptotically in $k$.}
+
+What the present section adds is only this. The criterion is stated with no ``sufficiently
+large'' and no ineffective $k_0$: it is a single monotone comparison valid at every $k$, so one
+evaluation at $r(w)$ decides the class outright. And a failure is pinned to the $s$ endpoints
+$n,\dots,n+s-1$. The quantitative work is in \S\ref{sec:75}, where the run decomposition
+\eqref{eq:runsum} replaces Lagarias's cruder admissibility estimate
+$\rho_k(\mathbf v)\le k2^{(1-\theta)k}$ and makes $k_0$ explicit.
 \end{remark}
 
 \begin{example}\label{ex:59}
@@ -118,7 +135,7 @@ period of $512$ there are four representatives of this crossing class, of which 
 the full valuation word.
 \end{example}
 
-\section{Words with at most 75 odd runs}
+\section{Words with at most 75 odd runs}\label{sec:75}
 \begin{lemma}[run-length realizer bound]\label{lem:runbound}
 If an odd run starts at $x$ and lasts $\ell$ steps, the endpoint plus one equals
 $(3/2)^\ell(x+1)$, so $2^\ell\mid x+1$. At each odd step $x+1$ is multiplied by $3/2$,
@@ -233,8 +250,15 @@ becomes $m\ge83$ \cite{hercher2023}, while ours stays at $76$. \textbf{Nothing i
 raises the first-crossing threshold to $92$, and Hercher's cycle conclusion must not be read as
 applying to finite first crossings.}
 
-\emph{Terras \cite{terras1976} and Lagarias \cite{lagarias1985}} supply the residue-class
-perspective of \S\ref{sec:comparator}; see the discussion there.
+\emph{Lagarias \cite{lagarias1985}} is the closest predecessor of all, and
+Remark~\ref{rem:classical} gives the locators. His (2.14) is our descent criterion verbatim
+after rearrangement, and his Theorem~E already proves, by exactly our route --- linear forms in
+logarithms fed into that criterion --- that for admissible words of length $k\ge k_0$ only the
+smallest element of the class can fail. What is left to us is to make $k_0$ explicit under a
+hypothesis on the run count, which is what Lemma~\ref{lem:runbound} and
+Theorem~\ref{thm:75} do. Lagarias also records \cite[\S2.3]{lagarias1985} that Terras
+\cite{terras1976} and ``later Garner'' \cite{garner1981} conjectured the equality, which
+settles the question of independence raised above.
 
 \emph{Rozier and Terracol \cite{rozier2026}} supply the verification range and, in their
 Remark~5.5, credit Simons with proposing classification by local maxima. Three classes of object
@@ -404,9 +428,11 @@ it with the threshold of the actual first-crossing prefix.
 \section*{Status of the results}
 It is worth separating three things explicitly.
 
-\emph{Established before this note.} The residue-class correspondence for parity words and the
-reduction of a class to finitely many small members (Terras \cite{terras1976}, reviewed by
-Lagarias \cite[\S2.2]{lagarias1985}); the coefficient stopping time, the conjecture
+\emph{Established before this note.} The residue-class correspondence for parity words
+(Terras \cite{terras1976}); the affine form, the descent criterion
+$n>\varepsilon_k^{-1}\rho_k(v)$, and --- in Theorem~E --- the statement that for admissible
+words of length $k\ge k_0$ only the smallest element of a class can fail, proved from linear
+forms in logarithms (Lagarias \cite[\S2.2--\S2.3, Thm.~E]{lagarias1985}); the coefficient stopping time, the conjecture
 $\kappa=\sigma$, and the method of combining a Diophantine bound on $2^a$ against $3^b$ with a
 finite verification range, including a descent theorem under a bound on the number of odd
 \emph{terms} (Garner \cite{garner1981}); run-growth bounds for the number of local minima in a
@@ -420,7 +446,8 @@ hypothesis weakened from odd \emph{terms} to odd \emph{runs}, which is what
 Lemma \ref{lem:runbound} buys; the resulting explicit constants
 $k\ge10\,439\,860\,591$, $d\ge6\,586\,818\,670$ and a threshold of $76$ runs; descent for
 the whole repeated-$110$ family, which has arbitrarily many runs; the finite-word square bound
-$|U|<35\log_2k$; the exact single-comparison form of the least-realizer test; and the
+$|U|<35\log_2k$; the effective and non-asymptotic form of Lagarias's Theorem~E that these constants provide;
+and the
 reciprocal-sum restriction $\rho_k>0.9441733669$ on a shortest counterexample. Subject to the
 priority caveat of Remark \ref{rem:history}.
 
