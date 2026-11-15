@@ -10,6 +10,17 @@ passes. Independent reimplementations in `research/shortest_audit.py`,
 
 ---
 
+## Corrections, 16 November 2026 (second review)
+
+Four items in this report are wrong. See `research/PREFIX_FAMILIES_AUDIT.md`.
+
+| item | correction |
+|---|---|
+| "`B·(P ln2 − Q ln3) ≥ 4.24722567`" | **not a bound.** The true value is `4.24722566869589…`, so `4.24722567` exceeds it. My exact check used `> 4.24722566` and was correct; I then quoted a float rounded to *nearest* as if it were a certificate. Use **`B·Λ > 4.24722566`**. |
+| "a 27% reduction" | **example-specific.** `min_j U/M_w` is `0.728207` (mechanical) and `0.728457` (two-swap), but **`0.997451`** for the low-memory word `1^128(01)^178 0`. The interior comparison buys almost nothing when `M_j ≈ M_w`. |
+| the denominator `130 441 933 147 714 940` | **wrong side.** It gives `αq − p = −2.5871×10⁻¹⁸ < 0`, i.e. `ρ_j < 1`, which no proper prefix of a first-crossing word can have. The earliest *lower* convergent meeting the tolerance is **`267 118 416 222 671 843`** (drift `+2.3683×10⁻¹⁸`). |
+| the partial-quotient cap (§4, §5) | **REFUTED.** I coupled `d_j` and `d` as consecutive convergents. They are independent: with `d_j = q_m` of drift `g` and `d = N q_m`, `N = ⌊1/g⌋ − R`, one gets `ε ≈ R g` and `δ_j = g`, so `ε/δ_j ≈ R` is **free**. Explicit instances with ratios `10³, 10⁵, 10⁷`, all with `ε` inside the counterexample tolerance and the drift on the correct side. The gain is **not** capped by 55, and the interior comparison **is** a family tool. |
+
 ## Verdict
 
 > **All three results are correct, and the interior-comparison lemma is a genuine new
