@@ -37,6 +37,45 @@ in the list.
 
 ---
 
+## Exhaustiveness audit of `J*` — **[COMPLETED, and my first argument was wrong]**
+
+You flagged this as the critical bridge, and you were right to. Two of my attempts failed before
+one worked; `research/danger_exhaustive2.py` carries the final version.
+
+**Attempt 1 (invalid).** I bounded `j − aα ≥ 1/a`. False — the gap can be of order `1/a′` for
+the next denominator.
+
+**Attempt 2 (invalid).** I claimed the threshold `T` is subadditive, so that safe + safe ⟹ safe.
+**False:** `cap(t) = 7/3 + 0.94⌊(t−8)/8⌋` is a *step* function, the floor loses up to `0.94` per
+term, and the constant `7/3` offsets only one such loss. Concretely `a = b = 41`:
+`cap(63) + cap(63) = 598/75 + 598/75 < 493/30 = cap(128)`.
+
+**The repair, in two steps.**
+
+* **Step 1 (Legendre).** Danger means `|α − j/a| ≤ C`. While `C < 1/(2a²)` — that is,
+  `a < 1/√(2C) = 9.1717×10²⁰` — Legendre forces `j/a` to be a convergent. **No
+  convergent or semiconvergent below that cutoff is dangerous**, hence no `a` below it is
+  dangerous at all.
+* **Step 2 (near-homogeneity).** Above the cutoff `t ≥ 1.45×10²¹`, so
+  `cap(t)/(0.1175 t) = 1` to within `10⁻¹⁹` (measured deviation: `0`). `T` is therefore linear
+  to that precision, `gap` is additive, and `gap(a+b) = gap(a)+gap(b) > T(a)+T(b) ≥ T(a+b)`.
+  **Safe is closed under addition**, so the minimum of `gap(a)/a` over the whole additive
+  semigroup is attained at a generator — a one-sided best approximation.
+
+So enumerating **records is exhaustive for determining `J*`**, even though it does not list
+every dangerous pair. The Stern–Brocot upper records were verified against brute force for
+`a < 60 000` (35 of 35), giving **101 records with `a ≤ 10²⁴`**, of which **4 are dangerous**:
+
+```
+    least dangerous:  a = 7 941 964 418 702 608 664 581 ,   J* = 12 587 715 785 705 330 118 969
+    all 97 smaller records: safe
+```
+
+`J*` is **unchanged**. One caution: the closest safe record,
+`a = 205 632 218 873 398 596 256`, sits at only **1.0510×** its danger threshold — a 5% margin.
+`J*` is therefore sensitive to the constants `0.94`, `0.162` and `σ₁₆₃`, and any change to them
+should trigger a re-run.
+
 ## The key step: the early-crossing case becomes shell-independent
 
 A failure at an early crossing `j` needs `floor·E ≤ M_j ≤ cap(t)`, where
