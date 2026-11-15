@@ -9,6 +9,11 @@ Supplied script `research/terras_local_packing.py` runs clean. Independent check
 
 ---
 
+> **§4's open question is now ANSWERED — see `research/HISTORY_PACKING_AUDIT.md`.**
+> All-pairs overlap does **not** subsume short-history packing: a 120-run word on the same
+> `(485,306)` shell has a sole candidate `h = 2` passing all 117 370 overlap tests and all 484
+> restarts, which depth-9 packing with distinctness excludes.
+
 ## Verdict
 
 > **The generalized restart lemma is correct and strictly stronger than the version I
