@@ -9,6 +9,11 @@ Supplied script `research/terras_prefix_families.py` runs clean. Independent che
 
 ---
 
+> **Superseded in two places by `research/LOCAL_PACKING_AUDIT.md` (same day):** the six
+> critical shells quoted in §D were **mis-transcribed** — the loop returned `(485b, 306b)`,
+> `b = 1..6`, and five of the printed pairs are not crossings at all. And the "next
+> obligation" offered in §E presupposes excluding the no-low-return class, which exists.
+
 ## Verdict
 
 > **My central limitation claim was wrong, and the correction matters for where this goes.**
