@@ -12,7 +12,7 @@
 \title{Realizer Bounds and Repetition Constraints\\ at the First Coefficient Crossing in the $3x+1$ Problem}
 \author{Elias De Jes\'us\\ \textit{Independent Researcher}\\
 ORCID \href{https://orcid.org/0009-0007-0190-9143}{0009-0007-0190-9143}}
-\date{14 November 2026 \\[2pt] \textnormal{\small Author review copy.}}
+\date{14 November 2026}
 \begin{document}\maketitle
 
 \begin{abstract}
@@ -131,9 +131,11 @@ d\le G_sL,\qquad G_s=\sum_{j=0}^{s-1}\alpha^{\,j}.
 \end{lemma}
 
 Neither ingredient is new. The divisibility $2^{\ell}\mid x+1$ across a run of $\ell$ odd
-steps is the $x+1$ identity used by Garner \cite[\S5]{garner1981}, and in the cycle problem it
-is Lemma 8 of Hercher \cite{hercher2023}, there written $1\le k_i\le x_i$ with
-$x_i=\log_2(n_i+1)$. The geometric sum $G_s=(\alpha^s-1)/(\alpha-1)$ is likewise the sum
+steps appears explicitly as Lemma 8 of Hercher \cite{hercher2023}, written there as
+$1\le k_i\le x_i$ with $x_i=\log_2(n_i+1)$; that is the antecedent we are aware of. Garner's
+contribution is separate and is recorded below: the coefficient stopping time itself
+\cite[\S4]{garner1981} and the Diophantine study of powers of $2$ against powers of $3$
+\cite[\S5--\S6]{garner1981}. The geometric sum $G_s=(\alpha^s-1)/(\alpha-1)$ is likewise the sum
 $(\delta^{m_2}-1)/(\delta-1)$ appearing in Hercher's Theorem 21, with the \emph{same} constant
 $\delta=\log_23=\alpha$; his recurrence $x_{i+1}<\delta x_i$ is the purely geometric form that
 cyclicity permits, while the affine form $D_{i+1}\le L+\alpha D_i$ above re-injects the seed
@@ -206,7 +208,8 @@ Every method used above is older than this note; what is new is the combination 
 resulting explicit constants for \emph{finite first crossings}.
 
 \emph{Garner \cite{garner1981}} is the direct precedent. He defined the coefficient stopping
-time, conjectured its equality with the stopping time independently of Terras and verified it for
+time, also formulated the conjectured equality with the stopping time --- he cites Terras
+\cite{terras1976} as his reference [3] --- and verified it for
 $n<1\,150\,000$, identified the realizing residue class modulo $2^{1+p(m)}$ with
 $p(m)=\lfloor m\log_23\rfloor$, and proved (his \S6) that $\sigma(n)=\kappa(n)$ whenever the
 number of odd \emph{terms} $m$ is below a bound assembled from a study of the powers of $2$ and
@@ -433,10 +436,9 @@ The companion verifier checks the numerical inequalities used in the proofs,
 recomputes the finite bracket count, and verifies the worked examples using integer and
 rational arithmetic. It lives in the
 companion repository
-\url{https://github.com/innerlightr-wq/terras-first-crossing}, with the verification
+\href{https://github.com/innerlightr-wq/terras-first-crossing}{\texttt{github.com/innerlightr-wq/\allowbreak terras-first-crossing}}, with the verification
 code pinned at the immutable commit
-\texttt{a93b1e8} (full hash
-\texttt{a93b1e82d13fab7024c380ae36320e4ec62a73f9}).
+\href{https://github.com/innerlightr-wq/terras-first-crossing/commit/a93b1e82d13fab7024c380ae36320e4ec62a73f9}{\texttt{a93b1e8}}.
 Run the following command from the project root.
 \begin{verbatim}
 python3 scripts/verify_crossing.py
@@ -444,7 +446,7 @@ python3 scripts/verify_crossing.py
 The script checks the numerical inequalities with integers and rationals,
 encloses $\ln2$ and $\ln3$ by a 96-term series with a geometric tail, recomputes the
 finite bracket sum in (164) of \cite{nfb2026}, and encloses each exponential cutoff by
-alternating Taylor bounds. The SHA-256 digest of the verifier in this review copy begins
+alternating Taylor bounds. The SHA-256 digest of the verifier begins
 \texttt{f852c88311071a0d}. The orbit and residue-class examples are finite checks.
 The proofs for arbitrary word lengths are in the text.
 
