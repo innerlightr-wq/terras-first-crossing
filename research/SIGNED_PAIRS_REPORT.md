@@ -45,8 +45,9 @@ Verified on 2000 random buckets, and the per-bucket factor matched against `pack
 contributes `1 + w/seed` with the seed itself in place of a floor, so the lemma covers
 noninitial buckets only. Partial histories (`used = min(i, depth)`) give early starts a smaller
 `3^used` and hence a different stride, so they fall in different buckets and the lemma applies
-bucket by bucket. Equality (`x_(1) = f`, consecutive gaps exactly `P`) is the integral-seed case
-and makes the bound tight.
+bucket by bucket. Equality holds **iff** the bucket occupies the consecutive terms
+`f, f+P, …, f+(c−1)P`; an integral seed makes that *possible* but does not force it, so
+"the integral-seed case" (as this report first put it) overstates when the bound is tight.
 
 **Constructive extraction.** Contrapositive: if a candidate clears every floor but fails the
 collective bound, some bucket violates (ii), and sorting it exposes an adjacent pair with gap
