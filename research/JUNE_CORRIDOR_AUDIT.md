@@ -138,11 +138,20 @@ So a fully congruent family of `t` sites must span `t` shell periods, giving
 > exclude is `2^12 = 4096` words, with probability `~10⁻¹⁶`; at `t = 2` a miss is plausible
 > (`P ≈ 0.59`) but the family has four words.
 
-## 6. The scaling obstruction for real shells — **[PROVED]**
+## 6. The scaling obstruction for real shells — **[PROVED, vehicle CORRECTED]**
+
+> **Correction (16 Nov, `research/SHORTEST_FAILURE_AUDIT.md` §4a).** This section used
+> `X8^b` as a *word* family. It is only a *shell* family: `2^485 > 3^306`, so the coefficient
+> has already fallen below one at `t = 485`, and `X8^b` for `b ≥ 2` is **not** a first-crossing
+> word — it crosses at `t = 485`. The vehicle is withdrawn. The conclusion stands on the
+> general ground below, since the window width is `M_w` and that grows with `d` on any
+> line-hugging family; and valid unbounded families of *critical* shells carrying the factor
+> 929 do exist (the pairs with `2^k ≡ 3^d mod 929` form a lattice coset, and infinitely many
+> are critical — six exhibited in the new report).
 
 `2^485 − 3^306 | 2^{485b} − 3^{306b}`, so `929 | A_b` for **every** `b` — a fixed factor does
-follow the family `X8^b`. But `M_w(X8^b)` grows linearly, `≈ 73.70 b`, so the window outgrows
-the factor and **the filter is vacuous from `b = 13`**. Verified.
+follow the shell family. But the admissible window has width `≈ M_w`, which grows with `d`
+on a line-hugging family, so it outgrows any fixed factor.
 
 Keeping it alive needs `F > M_w`. For a genuine counterexample `d ≥ 6 586 818 670`, and
 `M_w ≈ d/3` for a line-hugging word, so one would need a known factor of `2^k − 3^d` exceeding
