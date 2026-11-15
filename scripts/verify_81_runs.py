@@ -104,6 +104,46 @@ for i, (r, Ht, dt) in enumerate(ROWS):
     d_prev = min(d_prev, dnew)
 chk("CONTRADICTION: final d bound < d lower bound", d_prev < dmin,
     "%.6e < %.6e" % (float(d_prev), float(dmin)))
+
+print("=== the printed enclosures and the printed-ceiling consistency ===")
+NAMED = (("I",  (9881527843552324, 6234549927241963),      F(522,100), F(524,100), -18),
+         ("II", (79641170620168673833, 50247984153525417450), F(671,100), F(672,100), -21),
+         ("III",(6724555128221608268, 4242721909926539673),  F(124,100), F(125,100), -19),
+         ("IV", (423372672964960618, 267118416222671843),    F(164,100), F(165,100), -18))
+for nm, pq, lo, hi, ex in NAMED:
+    elo, ehi = e_br(*pq)
+    chk("e_%s in (%s, %s)e%d as printed" % (nm, lo, hi, ex),
+        lo*F(10)**ex < elo and ehi < hi*F(10)**ex, "e = %.6e" % float(elo))
+chk("the printed denominator 5.24e-18 is an upper bound for e_I and still gives d > 1.28e17",
+    e_br(*NAMED[0][1])[1] <= F(524,100)*10**-18 and
+    (LN2_LO - F(NAMED[0][1][1]*S, B))/(F(524,100)*10**-18) > F(128,100)*10**17,
+    "d >= %.6e" % float((LN2_LO - F(NAMED[0][1][1]*S, B))/(F(524,100)*10**-18)))
+p4, q4 = NAMED[3][1]
+lam4 = (LN2_LO - F(3194,10**4)*10**18*e_br(p4,q4)[1])/q4
+chk("row 4 lambda from the PRINTED ceiling d < 3.1940e17 exceeds 6.3202e-19",
+    lam4 > F(63202,10**23), "lambda = %.10e" % float(lam4))
+chk("that lambda still yields H = 68 and the same final bound",
+    clog2(max(1 + F(81)*(1+F(81,B))/lam4,
+              1 + F(S-7)*(1+F(81,B))/(lam4-F(7,B)))) == 68)
+
+print("=== Corollary: every counterexample is the least eligible seed of its class ===")
+import math
+chk("14.3 log2 k < k for k = 128 (and the gap grows)", F(143,10)*F(7) < 128,
+    "14.3*log2(128) = 100.1 < 128")
+chk("the crossing-length bound 10439860591 exceeds 128", 10439860591 > 128)
+def v2(t):
+    t = abs(t); return (t & -t).bit_length()-1
+odd_cross = 0
+for n in range(3, 60001, 2):
+    x, dd, kk = n, 0, 0
+    while kk < 100000:
+        b = x % 2; kk += 1; dd += b
+        x = (3*x+1)//2 if b else x//2
+        if 3**dd < 2**kk:
+            if b == 1: odd_cross += 1
+            break
+chk("the crossing step is EVEN for every odd n < 60000, so the last odd run is complete",
+    odd_cross == 0, "%d exceptions" % odd_cross)
 print()
 print("%d checks, %d passed, %d failed" % (npass+nfail, npass, nfail))
 sys.exit(1 if nfail else 0)

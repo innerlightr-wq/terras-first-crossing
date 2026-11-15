@@ -1,5 +1,13 @@
 \begin{thebibliography}{10}
 
+\bibitem{alick2026}
+Justin Alick.
+\newblock Collatz $m$-cycles: a {L}ean~4 formalisation, 2026.
+\newblock Declaration \texttt{allPairs70 : AllPairs 70 76} in
+  \texttt{Collatz/MCycleTwoRiseHi2.lean} lines 15--19, proved by \texttt{decide
+  +kernel}, at commit \texttt{d1895945}.
+  \url{https://github.com/justinalick/collatz-m-cycles-101-lean}.
+
 \bibitem{eliahou1993}
 Shalom Eliahou.
 \newblock The $3x+1$ problem: new lower bounds on nontrivial cycle lengths.

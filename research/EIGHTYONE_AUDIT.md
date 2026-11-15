@@ -12,6 +12,42 @@ independent reconstruction, **not** a review of that script.
 
 ---
 
+## Correction pass, 15 November 2026
+
+A reviewer recomputed all five height bounds independently and confirmed the verdict, with
+corrections. Applied, and the verifier extended from 19 to 29 checks:
+
+| item | correction |
+|---|---|
+| row 4 `λ` | printed `6.3204×10⁻¹⁹` followed the *exact* ceiling; a reader using the printed `d < 3.1940×10¹⁷` gets `6.3202346…×10⁻¹⁹`. Now printed as `6.3202×10⁻¹⁹`; `H = 68` and the final bound are unchanged. Every row's `λ` is now computed from the printed ceiling above it. |
+| "two pairs suffice" | **four** distinct convergents are used. All four are now tabulated with their `e`-enclosures. |
+| `e_I` denominator | text cited `e_I < 5.24×10⁻¹⁸` then used `5.23`. Now uses `5.24`, which still gives `d > 1.288×10¹⁷`. |
+| my `e_II`, `e_IV` enclosures | I **guessed** them when first tabulating the four convergents; both were wrong (`1.03×10⁻²¹` and `2.07×10⁻¹⁸`). Computed values are `6.7199×10⁻²¹` and `1.6416×10⁻¹⁸`. Now verified in the script. |
+| `2^65` | described as "the least split this argument admits"; now "the first **dyadic** split that closes this tail estimate". |
+| Lemma 6 | `r = 0` now handled first via `n+1 < 1+81/λ`, then `r ≥ 1`. |
+| "large-`ρ` runs are exactly the discarded ones" | **overstated, removed.** Only one implication is used: a *selected* run has `m_i ≥ m*` hence `ρ_i < 1/m*`. The converse fails, since `m_i` depends on `ℓ_i` too — a run with small `ρ_i` but small `ℓ_i` also has small `m_i`. (The same overstatement appears in §1 of this report and is corrected below.) |
+| "the last run is cut off by the crossing" | **false**, pre-existing text. The last odd run is *complete*: were step `k` odd then `2^{k−1} ≤ 3^{d−1}` and `2^k > 3^d` give `3^d < 2^k ≤ 2·3^{d−1} < 3^d`. Verified: 0 exceptions among odd `n < 60000`. |
+| "raising 76 is left for future work; no such raising is claimed" | **contradicted Theorem 8**; deleted. |
+| "makes Lagarias's `k₀` explicit" | **wrong**: his `k₀` thresholds *steps*, our hypothesis bounds *runs*, and his conclusion exempts the smallest class element while ours covers it. Claim withdrawn and replaced by Corollary 9. |
+| AI-use counts | I had them reversed. The first **three** height bounds improved; the last **two** reproduced. |
+| Alick | now a direct bibliography citation with file, lines and commit. |
+| bundles | `r3` hexagon zip, Zenodo tarball (now including `verify_81_runs.py`), PDF and self-contained TeX regenerated; `r2` preserved. Digests identified per script: `verify_crossing.py` `f852c88311071a0d` (unchanged), `verify_81_runs.py` `10bdf41b1a2d4c1b`. |
+
+**New result added (reviewer's suggestion, verified):**
+
+> **Corollary 9.** Every counterexample to Terras's conjecture is the least eligible seed of its
+> parity class.
+
+*Proof.* A failure gives `nΛ < M_w ≤ d/3` and `Λ ≥ k^{−13.3}` (Rhin), so `n < k^{14.3}/3`. A
+length-`k` word is one class mod `2^k`, so every eligible seed but the least exceeds `2^k`. For
+`k ≥ 128`, `14.3 log₂ k < k`, hence `n < 2^k`; and `k ≥ 10 439 860 591` by Theorem 8. ∎
+
+The crossover of `14.3 log₂ k < k` is between `k = 93` and `k = 94`, so `k ≥ 128` is safe.
+Combined with Theorem 8, what remains open is exactly **the least eligible seed of a
+first-crossing word with 82 or more odd runs** — now the wording of the status section.
+
+---
+
 ## Verdict: the candidate theorem PASSES
 
 > **Every eligible realizer of a first-crossing word with at most 81 maximal odd runs descends
@@ -90,7 +126,8 @@ available; `nΛ < M_w < 81` gives `n + 1 < 1 + 81/λ` directly, which is the dis
 needed a run of *relative* drift `h_i < 1` (i.e. `ρ_i < 2`), of which only `h_i < 5.4833`
 follows. Lemma 6 claims nothing about `h_i`: its conclusion is an **absolute** height bound
 `x_i < C(λ,r)`, and since `x_i = ρ_i(n+M_i) ≥ n` it caps the seed at the same time. The runs
-with large `ρ_i` are precisely the ones **discarded** — they have small `m_i`. The same
+with large `ρ_i` have small `m_i` and so tend to be discarded, though the converse fails since
+`m_i` also depends on `ℓ_i`; the proof uses only that a *selected* run has `ρ_i < 1/m*`. The same
 inequality `nΛ < M_w` is being read for an absolute rather than a relative conclusion, so the
 earlier objection does not transfer.
 
@@ -186,6 +223,6 @@ particular it is independent of Justin Alick's Lean two-run bounds, which give t
 ```
 cd ~/scratch/tfc-81run
 python3 scripts/verify_crossing.py     # 51/51 — pinned release verifier, unchanged
-python3 scripts/verify_81_runs.py      # 19/19 — the new certificate
+python3 scripts/verify_81_runs.py      # 29/29 — the new certificate
 python3 research/audit81.py            # 19/19 — the full audit incl. both lemmas
 ```
